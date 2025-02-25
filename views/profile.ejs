@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="w-full min-h-screen bg-zinc-900 text-white">
+
+        <!-- Profile Section (Top Left) + Logout (Top Right) -->
+        <div class="flex justify-between items-center w-full p-10">
+
+            <!-- Profile Section (Top Left) -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-md overflow-hidden cursor-pointer" id="profilePicContainer">
+                    <img class="w-full h-full object-cover"
+                        src="/images/uploads/<%= user.profilepic ? user.profilepic : 'default.png' %>"
+                        alt="Profile Picture">
+
+                </div>
+                <h3 class="text-2xl"><span class="font-light">Hello</span>, <%= user.name %>
+                </h3>
+            </div>
+
+            
+
+            <!-- Logout Button (Top Right) -->
+            <a class="bg-red-500 rounded-md px-4 py-2 text-sm" href="/logout">Logout</a>
+        </div>
+
+        <!-- Create Task Form -->
+        <div class="form pt-2 p-10 text-white">
+            <form action="/create" method="post">
+                <input class="block w-full rounded-md outline-none px-5 py-2 bg-zinc-800" type="text"
+                    placeholder="Title goes here..." required name="title">
+                <textarea class="block w-full rounded-md outline-none mt-2 px-5 py-2 resize-none bg-zinc-800"
+                    placeholder="Write your task details here..." name="details" required></textarea>
+                <input class="mt-2 bg-blue-600 rounded-md px-5 py-2" type="submit" value="Create Task">
+            </form>
+        </div>
+
+        <!-- Posts Section
+        <div class="posts p-10">
+            <h3 class="text-zinc-400">Your Posts.</h3>
+            <div class="postcontainer mt-5 ">
+                <% user.posts.reverse().forEach(function(post){ %>
+                    <div class="post w-full sm:w-1/3 p-4 mb-4 border border-zinc-700 rounded-md bg-zinc-800">
+                        <h4 class="text-blue-500 mb-2">@<%= user.username %> -->
+        <!-- </h4> -->
+        <!-- <p class="text-sm tracking-tight">
+                            <%= post.title %>
+                        </p> -->
+        <!-- <small class="mt-2 inline-block">
+                            <%= post.likes.length %> likes
+                        </small> -->
+        <!--                      
+                        <div class="flex justify-between mt-1">
+                            <div class="flex gap-4">
+                                <a class="text-blue-500" href="/like/<%= post._id %>">
+                                    <%= post.likes.indexOf(user._id)===-1 ? "Done" : "Undone" %>
+                                </a>
+                                <a class="text-zinc-600" href="/edit/<%= post._id %>">Edit</a>
+                            </div>
+                            <a class="text-blue-500 ml-auto" href="/post/<%= post._id %>">Read More</a>
+                        </div>
+                        
+                    </div>
+                    <% }) %>
+            </div>
+        </div> -->
+        <div class="posts p-10">
+            <h3 class="text-zinc-400">Your Posts.</h3>
+            <div class="postcontainer mt-5">
+                <% user.posts.reverse().forEach(function(post){ %>
+                    <div
+                        class="post w-full sm:w-1/3 p-4 mb-4 border border-zinc-700 rounded-md bg-zinc-800 relative overflow-visible">
+                        <h4 class="text-blue-500 mb-2">@<%= user.username %>
+                        </h4>
+
+                        <!-- Three Dots Menu (Top Right) -->
+                        <div class="absolute top-2 right-2 z-50">
+                            <button class="text-white text-xl" onclick="toggleMenu('<%= post._id %>')">⋮</button>
+
+                            <!-- Dropdown Menu -->
+                            <div id="menu-<%= post._id %>"
+                                class="hidden absolute right-0 mt-1 w-32 bg-zinc-800 border border-zinc-700 rounded-md shadow-md z-50">
+                                <a href="/edit/<%= post._id %>"
+                                    class="block px-4 py-2 text-white hover:bg-zinc-700">Edit</a>
+                                <a href="/delete/<%= post._id %>"
+                                    class="block px-4 py-2 text-red-500 hover:bg-zinc-700">Delete</a>
+                            </div>
+                        </div>
+
+                        <p class="text-sm tracking-tight">
+                            <%= post.title %>
+                        </p>
+
+                        <div class="flex items-center justify-between mt-auto">
+
+                            <a href="/post/<%= post._id %>" class="text-blue-400 hover:bg-zinc-700  py-1">Read
+                                More</a>
+
+                            <a class="text-red-500 py-1" href="/like/<%= post._id %>">
+                                <%= post.likes.indexOf(user._id)===-1 ? "Undone" : "Done" %>
+                            </a>
+
+                        </div>
+
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script>
+        document.getElementById("profilePicContainer").addEventListener("click", function () {
+            let confirmUpload = confirm("Do you want to change your profile picture?");
+            if (confirmUpload) {
+                window.location.href = "/profile/upload";
+            }
+        });
+    </script>
+    <script>
+        function toggleMenu(postId) {
+            const menu = document.getElementById("menu-" + postId);
+            menu.classList.toggle("hidden");
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function (event) {
+            document.querySelectorAll("[id^='menu-']").forEach(menu => {
+                if (!menu.parentElement.contains(event.target)) {
+                    menu.classList.add("hidden");
+                }
+            });
+        });
+    </script>
+ 
+
+
+
+</body>
+
+</html>
