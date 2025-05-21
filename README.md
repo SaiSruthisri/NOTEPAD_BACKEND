@@ -3,7 +3,7 @@
 
 A full-featured backend for a simple Notepad/Task App built with **Node.js**, **Express**, and **MongoDB**. It supports user authentication, post creation, editing, liking, deletion, and profile picture uploads.
 
-🔗 **Live Website:** [Notepad Backend]([https://your-live-link.com](https://notepad-backend-0mk3.onrender.com))  
+🔗 **Live Website**: [Notepad Backend](https://notepad-backend-0mk3.onrender.com)
 
 ---
 
