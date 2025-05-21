@@ -24,8 +24,7 @@ A full-featured backend for a simple Notepad/Task App built with **Node.js**, **
 - **Authentication:** JWT, bcrypt, cookie-parser
 - **Templating Engine:** EJS
 - **File Uploads:** Multer
-- **Other:** Path, FS, Static file handling
-
+  
 ---
 
 ## ⚙️ How to Clone & Run Locally
