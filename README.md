@@ -1,7 +1,7 @@
   
 # 📝 Notepad App Backend
 
-A full-featured backend for a simple Notepad/Task App built with **Node.js**, **Express**, and **MongoDB**. It supports user authentication, post creation, editing, liking, deletion, and profile picture uploads.
+A full-featured backend for a simple Notepad/Task App built with **Node.js**, **Express**, and **MongoDB**. It supports user authentication, notes creation, editing, liking, deletion, and profile picture uploads.
 
 🔗 **Live Website**: [Notepad Backend](https://notepad-backend-0mk3.onrender.com)
 
@@ -9,11 +9,10 @@ A full-featured backend for a simple Notepad/Task App built with **Node.js**, **
 
 ## 🚀 What This Project Does
 
-- 👤 User registration & login (JWT-based authentication)
+- 👤 User registration & login 
 - 🔒 Protected routes using middleware
-- 📄 Create, edit, delete, and like posts/notes
-- 👤 User profile with post history
-- 📷 Upload & update profile pictures (Multer)
+- 📄 Create, edit, delete, and like notes
+- 📷 Upload & update profile pictures 
 - 🖼️ EJS templating for rendering views
 
 ---
